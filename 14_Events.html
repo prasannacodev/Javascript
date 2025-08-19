@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+     <button onclick="alert('Button Clicked!')">Click Me!</button>
+    <button onmouseover="alert('Mouse over!')">Hover Me!</button>
+    <input type="text" onkeydown="alert('Key down!');" />
+    <br />
+    <form onsubmit="alert('Form submitted!')">
+      <input type="text" />
+      <button type="submit">Submit</button>
+    </form>
+    <button id="myButton1">Click Me!</button> 
+    <button id="myButton">Hover Me!</button>
+    <input id="myInput" type="text" />
+    <form id="myForm">
+      <input type="text" />
+      <button type="submit">Submit</button>
+    </form>
+    <script>
+      // var button = document.querySelector("#myButton");
+      // button.addEventListener("click", () => {
+      //   alert("Button clicked!");
+      // });
+      // const button =document.querySelector("#myButton");
+      // button.addEventListener("mouseover",()=>{
+      //   alert("Mouse over!");
+      // })
+      // let input = document.querySelector("#myInput");
+      // input.addEventListener("keydown", (event) => {
+      //   alert("Key down:"+ event.key);
+      // });
+      var form = document.querySelector("#myForm");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        alert("Form submitted");
+      });
+    </script>
+  </body>
+</html>

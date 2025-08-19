@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p id="formattedData"></p>
+        <p id="formattedTime"></p>
+    </div>
+    <script>
+        function updateCurrentDateTime(){
+            var currentDate = new Date();
+            var year =currentDate.getFullYear();
+            var month =currentDate.toLocaleString("default",{month :"long"});
+            var day = currentDate.getDate();
+            var hours =currentDate.getHours();
+            var minutes =currentDate.getMinutes();
+            var seconds =currentDate.getSeconds();
+
+            var formattedData ="Formatted Date:"+month+"-"+day+"-"+year;
+            var formattedTime ="Formatted Times:"+ hours +":"+minutes +":"+seconds;
+
+            document.getElementById("formattedData").textContent =formattedData;
+            document.getElementById("formattedTime").textContent = formattedTime;
+        }
+        updateCurrentDateTime();
+    </script>
+</body>
+</html>

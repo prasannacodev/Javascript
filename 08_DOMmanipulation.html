@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="head">old heading</h1>
+    <p class="para">old paragraph1</p>
+    <p class="para">old paragraph2</p>
+    <p class="para">old paragraph3</p>
+    <ul>
+      <li>old item1</li>
+      <li>old item2</li>
+      <li>old item3</li>
+    </ul>
+    <div id="myElement">old element</div>
+    <div>sample Element</div>
+    <div id="elementToRemove">Element to Remove</div>
+    <script>
+      const heading = document.getElementById("head");
+      heading.textContent = "Hello,World!";
+      const paragraphs = document.getElementsByClassName("para");
+      for (let i = 0; i < paragraphs.length; i++) {
+        paragraphs[i].textContent = "This is paragraph" + (i + 1);
+      }
+      var listItems = document.getElementsByTagName("li");
+      for (let i = 0; i < listItems.length; i++) {
+        listItems[i].textContent = "Item" + (i + 1);
+      }
+      const myElement = document.getElementById("myElement");
+      myElement.style.backgroundColor = "red";
+      myElement.style.color = "white";
+      const newParagraph =document.createElement("p");
+      newParagraph.textContent ="This is paragraph.";
+      document.body.appendChild(newParagraph);
+      let elementToRemove =document.getElementById("elementToRemove");
+      elementToRemove.remove();
+
+    </script>
+  </body>
+</html>

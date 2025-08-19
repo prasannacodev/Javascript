@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Consumption</title>
+     <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+  </head>
+  <body>
+    <button id="fetchbutton">Get Random Image</button>
+    <img src="" alt="Random Dog Image" id="randomImage" />
+    <script>
+      document
+        .getElementById("fetchbutton")
+        .addEventListener("click", function () {
+          fetch("https://dog.ceo/api/breeds/image/random")
+            .then((response) => response.json())
+            .then((data) => {
+              document.getElementById("randomImage").src = data.message;
+            })
+            .catch((error) => {
+              console.log("Error fetching image:", error);
+            });
+        });
+    </script>
+  </body>
+</html>
