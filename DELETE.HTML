@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch API For DELETE</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      .card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        background-color: #fff;
+      }
+      .card img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+      }
+      .card h3 {
+        margin: 10px 0;
+        font-size: 1.2em;
+      }
+      .card p {
+        margin: 5px 0;
+        color: #555;
+      }
+      .card button {
+        margin-top: 10px;
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .card button:hover {
+        background-color: #c82333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Fetch API -DELETE Example with Cards</h2>
+      <div class="cards" id="cardContainer"></div>
+    </div>
+    <script>
+      let tasks = [];
+      const cardContainer = document.getElementById("cardContainer");
+
+      function fetchTasks() {
+        cardContainer.innerHTML = "<p>Loading tasks...</p>";
+        fetch("https://68a339d2c5a31eb7bb1f7fce.mockapi.io/crud")
+          .then((res) => res.json())
+          .then((data) => {
+            tasks = data;
+            renderCards();
+          })
+          .catch((error) => {
+            console.log("Error fetching tasks:", error);
+            cardContainer.innerHTML = "<p>Failed to load tasks.</p>";
+          });
+      }
+
+      function renderCards() {
+        if (tasks.length === 0) {
+          cardContainer.innerHTML = "<p>No tasks available.</p>";
+          return;
+        }
+
+        cardContainer.innerHTML = tasks
+          .map(
+            (task) => `
+        <div class="card">
+          <img src="${task.image}" alt="${task.name}">
+          <h3>${task.name}</h3>
+          <p><strong>Email:</strong> ${task.email}</p>
+          <p><strong>Phone:</strong> ${task.phone}</p>
+          <button onclick="deleteTask('${task.id}')">Delete</button>
+        </div>
+      `
+          )
+          .join("");
+      }
+
+      function deleteTask(id) {
+        fetch(`https://68a339d2c5a31eb7bb1f7fce.mockapi.io/crud/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error("Failed to delete task");
+            tasks = tasks.filter((task) => task.id !== id);
+            renderCards(); 
+          })
+          .catch((error) => {
+            console.log("Error deleting task:", error);
+            cardContainer.innerHTML = "<p>Failed to delete task.</p>";
+          });
+      }
+
+      fetchTasks();
+    </script>
+  </body>
+</html>
