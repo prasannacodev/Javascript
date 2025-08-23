@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookies Storage</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+      }
+      .output {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #e8f4fd;
+        border-left: 5px solid #00509e;
+        border-radius: 5px;
+        color: #333;
+      }
+      button {
+        padding: 8px 15px;
+        background-color: #00509e;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 10px 5px;
+      }
+      button:hover {
+        background-color: #003f7f;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="setCookie()">setCookie</button>
+    <button onclick="getCookie()">getCookie</button>
+    <button onclick="deleteCookie()">deleteCookie</button>
+    <div id="output" class="output">Output will appear here...</div>
+   <script>
+  function setCookie() {
+    const name = "username";
+    const value = "Johndoe";
+    const days = 7;
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+    document.getElementById("output").innerText = "Cookie set: username = Johndoe";
+  }
+
+  function getCookie() {
+    const name = "username=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookies = decodedCookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i].trim();
+      if (cookie.indexOf(name) === 0) {
+        document.getElementById("output").innerText =
+          "Retrieved cookie: " + cookie.substring(name.length);
+        return;
+      }
+    }
+    document.getElementById("output").innerText = "Cookie not found";
+  }
+
+  function deleteCookie() {
+    document.cookie = "username=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+    document.getElementById("output").innerText = "Cookie deleted";
+  }
+</script>
+
+<p id="output"></p>
+<button onclick="setCookie()">Set Cookie</button>
+<button onclick="getCookie()">Get Cookie</button>
+<button onclick="deleteCookie()">Delete Cookie</button>
+
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caching Expensive</title>
+  </head>
+  <body>
+    <button id="inefficentButton">Inefficent Iteration</button>
+    <button id="efficentButton">Efficent Iteration</button>
+    <script>
+      function calculateExpensiveValue() {
+        return "Expensive Value";
+      }
+      document
+        .getElementById("inefficentButton")
+        .addEventListener("click", function () {
+          for (let i = 0; i < 1000; i++) {
+            const value = calculateExpensiveValue();
+            console.log("Inefficient:", value);
+          }
+        });
+      function calculateExpensiveValue() {
+        if (!calculateExpensiveValue.cache) {
+          calculateExpensiveValue.cache = "Expensive Value";
+        }
+        return calculateExpensiveValue.cache;
+      }
+      document
+        .getElementById("efficentButton")
+        .addEventListener("click", function () {
+          for (let i = 0; i < 1000; i++) {
+            const value = calculateExpensiveValue();
+            console.log("Efficient:", value);
+          }
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Optimizing Loops</title>
+  </head>
+  <body>
+    <button id="inefficentButton">Inefficent Iteration</button>
+    <button id="efficentButton">Efficent Iteration</button>
+    <script>
+      document
+        .getElementById("inefficentButton")
+        .addEventListener("click", function () {
+          const array = [1, 2, 3, 4, 5];
+          for (let i = 0; i < array.length; i++) {
+            console.log("Inefficent:", array[i]);
+          }
+        });
+      document
+        .getElementById("efficentButton")
+        .addEventListener("click", function () {
+          const array = [1, 2, 3, 4, 5];
+          const length = array.length;
+          for (let i = 0; i < length; i++) {
+            console.log("Efficent:", array[i]);
+          }
+        });
+    </script>
+  </body>
+</html>

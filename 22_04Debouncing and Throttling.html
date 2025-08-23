@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debouncing and Throttling</title>
+  </head>
+  <body>
+    <input type="text" id="inputField" />
+    <script>
+      function debounce(func, delay) {
+        let timer;
+        return function () {
+          clearTimeout(timer);
+          timer = setTimeout(func, delay);
+        };
+      }
+      function throttle(func, delay) {
+        let lastcall = 0;
+        return function () {
+          const now = new Date().getTime();
+          if (now - lastcall >= delay) {
+            func();
+            lastcall = now;
+          }
+        };
+      }
+      const inputField = document.getElementById("inputField");
+      const debounceHandler = debounce(function () {
+        console.log("Debounce:", inputField.value);
+      }, 500);
+
+      const throttleHandler = throttle(function () {
+        console.log("Throttle:", inputField.value);
+      }, 500);
+    //   inputField.addEventListener('input',debounceHandler)
+      inputField.addEventListener('input',throttleHandler)
+
+
+    </script>
+  </body>
+</html>
