@@ -1,0 +1,72 @@
+<!-- Push Method: -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUSH</title>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .output-box {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+ </head>
+ <body>
+    <div class="container">
+      <input type="text" id="inputvalue" placeholder="Enter a value">
+      <button id="addbutton">Add Item</button>
+      <div class="output-box" id="outputbox">
+
+      </div>
+    </div>
+    <script>
+      let items =["Apple","Banana","Orange"];
+      let outputbox =document.getElementById("outputbox");
+      let addbutton =document.getElementById("addbutton");
+      let inputvalue =document.getElementById("inputvalue");
+      outputbox.textContent ="Current Items:"+items.join(",");
+      addbutton.addEventListener("click",()=>{
+         let value =inputvalue.value.trim();
+         if(value){
+            items.push(value);
+            inputvalue.value ="";
+            outputbox.textContent ="Current Items:"+items.join(",");
+         }else{
+            alert("Please enter a valid value");
+         }
+      })
+    </script>
+ </body>
+ </html>
