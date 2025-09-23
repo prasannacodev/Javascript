@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POP</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        text-align: center;
+      }
+      .output-box,
+      .removed-box {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
+      button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #c82333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Array Pop Method</h2>
+      <p>
+        This example demonstrates how to use the <strong>pop()</strong>method to
+        remove the last element from an array
+      </p>
+      <button id="removeButton">Remove Last Item</button>
+      <div class="output-box" id="outputBox"></div>
+      <div class="remove-box" id="removeBox"></div>
+    </div>
+    <script>
+      const items = ["Apple", "banana", "Orange"];
+      const outputBox = document.getElementById("outputBox");
+      const removeBox = document.getElementById("removeBox");
+      const removeButton = document.getElementById("removeButton");
+      outputBox.textContent = "Current Items:" + items.join(",");
+      removeBox.textContent = "Removed Item:None";
+      removeButton.addEventListener("click", () => {
+        if (items.length > 0) {
+          const removedItem = items.pop();
+          outputBox.textContent = "Current Items:" + items.join(",");
+          removeBox.textContent = "Removed Item:" + removedItem;
+        } else {
+          alert("The array is already empty.");
+        }
+      });
+    </script>
+  </body>
+</html>
